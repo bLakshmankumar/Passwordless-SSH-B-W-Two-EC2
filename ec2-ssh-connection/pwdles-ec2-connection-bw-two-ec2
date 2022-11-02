@@ -1,0 +1,47 @@
+#                                      :- Password less ssh between 2 AWS EC2 instances using SSH Keys -:
+#                                      ------------------------------------------------------------------
+# Steps to create password less ssh b/w two aws EC2 Instances -:
+#---------------------------------------------------------------
+# > Prerequisites -:
+# -----------------
+# > 2 linux servers 
+#------------------
+#           > Redhat Linux Serever -A
+#           > IP:          *.*.*.*
+#           > User:        ec2-user
+#           > password: ***********      
+
+#           > Redhat Linux Serever -B
+#           > IP:          *.*.*.*
+#           > User:        ec2-user
+#           > password: ***********     
+
+# Step -1 -:
+-----------
+# > Generate the ssh key using below command in Redhat Linux Server -A
+#----------------------------------------------------------------------
+# > ssh-keygen
+# > ls -la ~/.ssh/
+# > id_rsa
+# > id_rsa.pub
+
+# step - 2 -:
+------------
+# > Copy the public key from Redhat Linux Server - A to Redhat Linux server - B  as follows.
+# > ssh-copy-id ec2-user@Redhat Linux Serever - B Hostname/IP Address.
+#**************
+
+
+# Practical -:
+--------------
+# login to server A > Do ssh-keygen > Enter,Enter,Enter > ls -la ~/.ssh > now we can see id_rsa & id_rsa.pub > ssh-copy-id ec2-user(server2(B)-username)@IP/Hostname(server-2(B)Ip/hostname) >,
+# Do yes > It'll ask server two ec2-user password (give the password) > Now this key successfully copied into the server 2(B) > 
+# Now try to connect Serever - B from Server - A >  Use this command > ssh ec2-user(Serever-2(B))@IP/Hostname(Serever-2(B)) > (ssh ec2-user@ip) > Click on Enter.
+# Now we can see without asking the password we can connect to the server 2(B).
+
+# Note -:
+---------
+# Now We can connect to server B From Server A without password bcs we generate a ssh-key and copied into server - B,
+# But we can't connect to Server A from Server B without password if we wanna connect from server -B to Server - A we need to provide a password,
+# Bcs we did't generate a ssh-keys on server - B, if we wanna connect to server - A from server -B we beed to generate a ssh-key in server -B and we need to copy on to server -A,
+# Then only we can able to connet Server -A from Server - B.
